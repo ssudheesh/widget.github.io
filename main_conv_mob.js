@@ -48,6 +48,7 @@ const url = "https://api.nlp.dev.uptimize.merckgroup.com/openai/deployments/gpt-
 
 (function () {
   alert("main function");
+  console.log("main function.....");
   const template = document.createElement("template");
   template.innerHTML = `
       <style>
@@ -58,6 +59,7 @@ const url = "https://api.nlp.dev.uptimize.merckgroup.com/openai/deployments/gpt-
   class MainWebComponent extends HTMLElement {
     async post(apiKey, userPrompt, question) {
       alert("post request");
+      console.log("post request");
       try {
         // Include conversation history in the prompt
         const prompt = conversation_history ? conversation_history + '#INTERACTION#\n' + userPrompt : userPrompt;
