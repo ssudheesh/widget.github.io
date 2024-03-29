@@ -9,12 +9,14 @@ const ajaxCall = (key, url, prompt) => {
         },
 
       success: function (response, status, xhr) {
+        debugger;
         const originHeader = xhr.getResponseHeader('Origin');
         console.log("Origin Header:", originHeader);
         alert(originHeader);
         resolve({ response, status, xhr });
       },
       error: function (xhr, status, error) {
+        debugger;
         const originHeader = xhr.getResponseHeader('Origin');
         console.log("Origin Header:", originHeader);
         alert(originHeader);
