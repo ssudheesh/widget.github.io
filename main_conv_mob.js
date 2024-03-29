@@ -47,6 +47,7 @@ const ajaxCall = (key, url, prompt) => {
 const url = "https://api.nlp.dev.uptimize.merckgroup.com/openai/deployments/gpt-4-turbo/chat/completions?api-version=2023-09-01-preview";
 
 (function () {
+  alert("main function");
   const template = document.createElement("template");
   template.innerHTML = `
       <style>
@@ -56,6 +57,7 @@ const url = "https://api.nlp.dev.uptimize.merckgroup.com/openai/deployments/gpt-
     `;
   class MainWebComponent extends HTMLElement {
     async post(apiKey, userPrompt, question) {
+      alert("post request");
       try {
         // Include conversation history in the prompt
         const prompt = conversation_history ? conversation_history + '#INTERACTION#\n' + userPrompt : userPrompt;
