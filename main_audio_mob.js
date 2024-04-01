@@ -8,6 +8,7 @@
     `;
   class MainWebComponent extends HTMLElement {
     async post(audioText) {
+      alert(audioText)
       try {
         // Set timeout duration for the recognition (in milliseconds)
         const recognitionTimeout = 5000; // Adjust as needed
@@ -17,13 +18,15 @@
 
         // Use the microphone as source for input
         console.log("Microphone is open now, say your prompt...");
+        alert("11111");
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         //const recognition = new webkitSpeechRecognition();
+        alert("222")
         const recognition = new SpeechRecognition();
         recognition.lang = 'en-US';
         recognition.continuous = true; // Set to true for continuous recognition
         recognition.interimResults = false;
-
+        alert("3333");
         // Wrap the recognition process in a Promise
         const recognitionResult = new Promise((resolve, reject) => {
           recognition.onresult = function(event) {
@@ -34,10 +37,14 @@
             resolve(audio2); // Resolve the promise with the recognized text
           };
 
+          alert("44444");
+
           recognition.onerror = function(event) {
             console.error("Speech recognition error:", event.error);
             reject(event.error); // Reject the promise with the recognition error
           };
+
+          alert("555");
 
           // Add an end event listener to handle timeout
           recognition.onend = function() {
