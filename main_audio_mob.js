@@ -18,35 +18,29 @@
 
         // Use the microphone as source for input
         console.log("Microphone is open now, say your prompt...");
-        alert("11111");
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         //const recognition = new webkitSpeechRecognition();
-        alert("222")
         const recognition = new SpeechRecognition();
         recognition.lang = 'en-US';
         recognition.continuous = true; // Set to true for continuous recognition
         recognition.interimResults = false;
-        alert("3333");
         // Wrap the recognition process in a Promise
         const recognitionResult = new Promise((resolve, reject) => {
           recognition.onresult = function(event) {
-            alert(event);
             // Extract the recognized text from the event
             const audio2 = event.results[0][0].transcript.toLowerCase();
-            alert(audio2);
             console.log("Did you say:", audio2);
             lastSpeechTimestamp = Date.now(); // Update the last speech timestamp
             resolve(audio2); // Resolve the promise with the recognized text
           };
 
-          alert("44444");
 
           recognition.onerror = function(event) {
             console.error("Speech recognition error:", event.error);
             reject(event.error); // Reject the promise with the recognition error
           };
 
-          alert("555");
+          
 
           // Add an end event listener to handle timeout
           recognition.onend = function() {
@@ -60,13 +54,13 @@
             }
           };
         });
-        alert("666");
+        
         recognition.start();
-        alert("7777");
+        
         // Wait for the recognition result
         return await recognitionResult;
       } catch (error) {
-        alert(error);
+        
         console.error('An error occurred:', error);
         return error;
 //        return 'An error occurred while processing the request.';
