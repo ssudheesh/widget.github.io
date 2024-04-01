@@ -17,7 +17,9 @@
 
         // Use the microphone as source for input
         console.log("Microphone is open now, say your prompt...");
-        const recognition = new webkitSpeechRecognition();
+        let SpeechRecognition = window.SpeechRecognition||window.webkitSpeechRecognition;
+        //const recognition = new webkitSpeechRecognition();
+        const recognition = new SpeechRecognition();
         recognition.lang = 'en-US';
         recognition.continuous = true; // Set to true for continuous recognition
         recognition.interimResults = false;
