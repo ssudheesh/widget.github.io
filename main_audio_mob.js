@@ -20,7 +20,7 @@
         //System
         //const recognition = new webkitSpeechRecognition();
         //Mobile
-        const recognition = new SpeechRecognition();
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
         recognition.lang = 'en-US';
         recognition.continuous = true; // Set to true for continuous recognition
         recognition.interimResults = false;
