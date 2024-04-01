@@ -57,6 +57,7 @@
         // Wait for the recognition result
         return await recognitionResult;
       } catch (error) {
+        alert(error);
         console.error('An error occurred:', error);
         return error;
 //        return 'An error occurred while processing the request.';
