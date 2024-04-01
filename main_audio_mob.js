@@ -8,7 +8,7 @@
     `;
   class MainWebComponent extends HTMLElement {
     async post(audioText) {
-      try {
+      // try {
         // Set timeout duration for the recognition (in milliseconds)
         const recognitionTimeout = 5000; // Adjust as needed
 
@@ -54,11 +54,11 @@
 
         // Wait for the recognition result
         return await recognitionResult;
-      } catch (error) {
-        console.error('An error occurred:', error);
-        return error;
-//        return 'An error occurred while processing the request.';
-      }
+//       } catch (error) {
+//         console.error('An error occurred:', error);
+//         return error;
+// //        return 'An error occurred while processing the request.';
+//       }
 
 
     }
