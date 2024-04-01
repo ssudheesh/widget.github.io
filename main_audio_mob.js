@@ -30,8 +30,10 @@
         // Wrap the recognition process in a Promise
         const recognitionResult = new Promise((resolve, reject) => {
           recognition.onresult = function(event) {
+            alert(event);
             // Extract the recognized text from the event
             const audio2 = event.results[0][0].transcript.toLowerCase();
+            alert(audio2);
             console.log("Did you say:", audio2);
             lastSpeechTimestamp = Date.now(); // Update the last speech timestamp
             resolve(audio2); // Resolve the promise with the recognized text
