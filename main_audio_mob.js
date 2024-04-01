@@ -58,9 +58,9 @@
             }
           };
         });
-
+        alert("666");
         recognition.start();
-
+        alert("7777");
         // Wait for the recognition result
         return await recognitionResult;
       } catch (error) {
