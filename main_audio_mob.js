@@ -8,7 +8,6 @@
     `;
   class MainWebComponent extends HTMLElement {
     async post(audioText) {
-      alert(audioText)
       try {
         // Set timeout duration for the recognition (in milliseconds)
         const recognitionTimeout = 5000; // Adjust as needed
