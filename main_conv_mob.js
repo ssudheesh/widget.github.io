@@ -68,7 +68,7 @@ const url = "https://api.nlp.dev.uptimize.merckgroup.com/openai/deployments/gpt-
         conversation_history = historyInteractions.slice(-2).join('#INTERACTION#');
 
         // Speak the text
-        //this.speakText(text);
+        this.speakText(text);
 
         return text;
       } catch (error) {
