@@ -21,7 +21,8 @@ const ajaxCall = (key, url, prompt) => {
       headers: {
         "Content-Type": "application/json",
         "x-api-key": key,
-        "region": "EU"
+        "region": "EU",
+        "Access-Control-Allow-Origin":"*"
       },
       crossDomain: true,
       success: function (response, status, xhr) {
