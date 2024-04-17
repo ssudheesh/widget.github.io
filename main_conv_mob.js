@@ -22,7 +22,8 @@ const ajaxCall = (key, url, prompt) => {
         "Content-Type": "application/json",
         "x-api-key": key,
         "region": "EU",
-        "Access-Control-Allow-Origin":"*"
+        "Access-Control-Allow-Origin":"*",
+        "custom_app":"sap_ios_app"
       },
       crossDomain: true,
       success: function (response, status, xhr) {
