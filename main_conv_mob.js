@@ -7,36 +7,78 @@ const ajaxCall = (key, url, prompt) => {
       { role: "user", content: prompt }
     ];
 
-    $.ajax({
-      url: url,
-      type: "POST",
-      dataType: "json",
-      data: JSON.stringify({
-        model: "gpt-4-turbo",
-        messages: messages,
-        max_tokens: 1024,
-        n: 1,
-        temperature: 0
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": key,
-        "region": "EU",
-        "Access-Control-Allow-Origin":"*",
-        "custom_app":"sap_ios_app"
-      },
-      crossDomain: true,
-      success: function (response, status, xhr) {
-        resolve({ response, status, xhr });
-      },
-      error: function (xhr, status, error) {
+    const requestData = JSON.stringify({
+      model: "gpt-4-turbo",
+      messages: messages,
+      max_tokens: 1024,
+      n: 1,
+      temperature: 0
+    });
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("x-api-key", key);
+    xhr.setRequestHeader("region", "EU");
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    xhr.setRequestHeader("custom_app", "sap_ios_app");
+
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        resolve({ response: JSON.parse(xhr.response), status: xhr.status, xhr: xhr });
+      } else {
         const err = new Error('xhr error');
         err.status = xhr.status;
         reject(err);
-      },
-    });
+      }
+    };
+
+    xhr.onerror = function() {
+      const err = new Error('xhr error');
+      err.status = xhr.status;
+      reject(err);
+    };
+
+    xhr.send(requestData);
   });
 };
+
+// const ajaxCall = (key, url, prompt) => {
+//   return new Promise((resolve, reject) => {
+//     const messages = [
+//       { role: "user", content: prompt }
+//     ];
+
+//     $.ajax({
+//       url: url,
+//       type: "POST",
+//       dataType: "json",
+//       data: JSON.stringify({
+//         model: "gpt-4-turbo",
+//         messages: messages,
+//         max_tokens: 1024,
+//         n: 1,
+//         temperature: 0
+//       }),
+//       headers: {
+//         "Content-Type": "application/json",
+//         "x-api-key": key,
+//         "region": "EU",
+//         "Access-Control-Allow-Origin":"*",
+//         "custom_app":"sap_ios_app"
+//       },
+//       crossDomain: true,
+//       success: function (response, status, xhr) {
+//         resolve({ response, status, xhr });
+//       },
+//       error: function (xhr, status, error) {
+//         const err = new Error('xhr error');
+//         err.status = xhr.status;
+//         reject(err);
+//       },
+//     });
+//   });
+// };
 
 const url = "https://api.nlp.dev.uptimize.merckgroup.com/openai/deployments/gpt-4-turbo/chat/completions?api-version=2023-09-01-preview";
 
